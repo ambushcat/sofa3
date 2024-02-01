@@ -4,28 +4,35 @@
     {
         private int rowNr;
         private int seatNr;
-        private bool isPremium;
-
-        public MovieTicket(bool isPremiumReservation, int seatRow, int seatNr)
+        public bool isPremium;
+        private MovieScreening movieScreening;
+        
+        public MovieTicket(bool isPremiumReservation, int seatRow, int seatNr, MovieScreening movieScreening)
         {
             this.isPremium = isPremiumReservation;
             this.seatNr = seatNr;
             this.rowNr = seatRow;
+            this.movieScreening = movieScreening;
 
-        }
-        public bool isPremiumTicket()
-        {
-            return true;
         }
 
         public double getPrice()
         {
-            return 0;
+            return movieScreening.getPricePerSeat();
         }
 
         public string toString()
         {
             return null;
+        }
+
+        public bool isWeekend()
+        {
+            if(movieScreening.dateAndTime.DayOfWeek == DayOfWeek.Saturday || movieScreening.dateAndTime.DayOfWeek == DayOfWeek.Sunday || movieScreening.dateAndTime.DayOfWeek == DayOfWeek.Friday)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
