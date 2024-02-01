@@ -1,4 +1,6 @@
-﻿namespace deel1
+﻿using System.Net.Sockets;
+
+namespace deel1
 {
     class Order
     {
@@ -6,7 +8,7 @@
         private bool isStudentOrder;
         private int price;
         private List<MovieTicket> tickets;
-        private List<MovieTicket> premiumtickets;
+        private List<MovieTicket> premiumTickets;
         private bool isWeekend = false;
         public Order(int orderNr, bool isStudentOrder)
         {
@@ -26,7 +28,7 @@
 
             if (ticket.isPremium)
             {
-                premiumtickets.Add(ticket);
+                premiumTickets.Add(ticket);
             }
             else
             {
@@ -36,15 +38,8 @@
         public double calculatePrice()
         {
             var freeTickets = calculateFreeTickets();
-
             Console.WriteLine("Free tickets: ", freeTickets);
-
-            if (isStudentOrder)
-            {
-                return calculateStudentPrice(freeTickets);
-            }
-            return calculateNormalPrice(freeTickets);
-
+            return calculatePriceWithFreeTickets(freeTickets);
         }
         public void export(TicketExportFormat exportFormat)
         {
@@ -55,25 +50,12 @@
         {
             if (isStudentOrder || !isWeekend)
             {
-                return (tickets.Count + premiumtickets.Count) / 2;
+                return (tickets.Count + premiumTickets.Count) / 2;
             }
             return 0;
         }
 
-        private double calculateStudentPrice(int freeTickets)
-        {
-            double price = 0;
-            foreach (var ticket in tickets)
-            {
-                if (ticket.isPremium)
-                {
-
-                }
-            }
-            return price;
-        }
-
-        private double calculateNormalPrice(int freeTickets)
+        private double calculatePriceWithFreeTickets(int freeTickets)
         {
             double price = 0;
             foreach (var ticket in tickets)
@@ -88,11 +70,30 @@
                 }
                 price += ticketPrice;
             }
-            foreach(var premiumTicket in premiumtickets)
+            foreach(var premiumTicket in premiumTickets)
             {
-
+                double ticketPrice = 0;
+                if (freeTickets > 0)
+                {
+                    freeTickets--;
+                }
+                else
+                {
+                    ticketPrice += premiumTicket.getPrice();
+                    ticketPrice += getPremiumprice();
+                }
+                price += ticketPrice;
             }
             return price;
+        }
+
+        private double getPremiumprice()
+        {
+            if(isStudentOrder)
+            {
+                return 3;
+            }
+            return 2;
         }
     }
 }
