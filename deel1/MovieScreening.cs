@@ -12,7 +12,7 @@
         }
         public decimal getPricePerSeat()
         {
-            return 0;
+            return pricePerSeat;
         }
         public string toString()
         {
