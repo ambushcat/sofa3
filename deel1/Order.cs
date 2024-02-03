@@ -21,7 +21,7 @@ namespace deel1
         }
         public void addSeatReservation(MovieTicket ticket)
         {
-            if(ticket.isWeekend())
+            if (ticket.isWeekend())
             {
                 this.isWeekend = true;
             }
@@ -39,11 +39,58 @@ namespace deel1
         {
             var freeTickets = calculateFreeTickets();
             Console.WriteLine("Free tickets: ", freeTickets);
-            return calculatePriceWithFreeTickets(freeTickets);
+            if (freeTickets > 0)
+            {
+                return calculatePriceWithFreeTickets(freeTickets);
+            }
+            if (checkForDiscount())
+            {
+                return calculatePriceWithDiscount();
+            }
+            else
+            {
+                return normalPrice();
+            }
         }
         public void export(TicketExportFormat exportFormat)
         {
 
+        }
+
+        private decimal normalPrice()
+        {
+            decimal price = 0;
+            foreach (var ticket in tickets)
+            {
+                price += ticket.getPrice();
+            }
+            foreach (var premiumTicket in premiumTickets)
+            {
+                price -= premiumTicket.getPrice();
+            }
+            return price;
+        }
+
+        private decimal calculatePriceWithDiscount()
+        {
+            if ((tickets.Count + premiumTickets.Count) > 6)
+            {
+                return normalPrice() * (decimal)0.9;
+            }
+            else
+            {
+                return normalPrice();
+            }
+
+        }
+
+        private bool checkForDiscount()
+        {
+            if (!isStudentOrder && isWeekend)
+            {
+                return true;
+            }
+            return false;
         }
 
         private int calculateFreeTickets()
@@ -61,16 +108,17 @@ namespace deel1
             foreach (var ticket in tickets)
             {
                 decimal ticketPrice = 0;
-                if(freeTickets > 0)
+                if (freeTickets > 0)
                 {
-                    freeTickets --;
-                } else
+                    freeTickets--;
+                }
+                else
                 {
                     ticketPrice += ticket.getPrice();
                 }
                 price += ticketPrice;
             }
-            foreach(var premiumTicket in premiumTickets)
+            foreach (var premiumTicket in premiumTickets)
             {
                 decimal ticketPrice = 0;
                 if (freeTickets > 0)
@@ -89,7 +137,7 @@ namespace deel1
 
         private decimal getPremiumprice()
         {
-            if(isStudentOrder)
+            if (isStudentOrder)
             {
                 return 2;
             }
