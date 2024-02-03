@@ -3,20 +3,20 @@
     class MovieScreening
     {
         public DateTime dateAndTime;
-        private double pricePerSeat;
+        private decimal pricePerSeat;
 
-        public MovieScreening(Movie movie, DateTime dateAndTime, double pricePerSeat)
+        public MovieScreening(Movie movie, DateTime dateAndTime, decimal pricePerSeat)
         {
             this.dateAndTime = dateAndTime;
             this.pricePerSeat = pricePerSeat;
         }
-        public double getPricePerSeat()
+        public decimal getPricePerSeat()
         {
             return 0;
         }
         public string toString()
         {
-            return null;
+            return "Movie Screening ~ Date an time; " + dateAndTime + ", Price per seat; " + pricePerSeat;
         }
     }
 }

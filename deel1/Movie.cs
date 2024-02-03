@@ -14,7 +14,7 @@
         }
         public string toString()
         {
-            return null;
+            return "Movie ~ Title; " + title;
         }
     }
 }

@@ -16,14 +16,14 @@
 
         }
 
-        public double getPrice()
+        public decimal getPrice()
         {
             return movieScreening.getPricePerSeat();
         }
 
         public string toString()
         {
-            return null;
+            return "Movieticket ~ Seat nummer; " + seatNr + ", Row nummer; " + rowNr + ", Is a premium seat; " + isPremium;
         }
 
         public bool isWeekend()
