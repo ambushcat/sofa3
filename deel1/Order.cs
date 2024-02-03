@@ -1,4 +1,5 @@
 ﻿using System.Net.Sockets;
+using System.Text.Json;
 
 namespace deel1
 {
@@ -54,7 +55,46 @@ namespace deel1
         }
         public void export(TicketExportFormat exportFormat)
         {
+            switch (exportFormat)
+            {
+                case TicketExportFormat.PLAINTEXT:
+                    {
+                        ExportAsPlainText();
+                        break;
+                    }
+                case TicketExportFormat.JSON:
+                    {
+                        ExportAsJSON();
+                        break;
+                    }
+                default: break;
+            }
 
+        }
+
+        private void ExportAsPlainText()
+        {
+            foreach (var ticket in tickets)
+            {
+                Console.WriteLine(ticket.toString());
+            }
+            foreach (var premiumTicket in premiumTickets)
+            {
+                Console.WriteLine(premiumTicket.toString());
+            }
+        }
+        private void ExportAsJSON()
+        {
+            foreach (var ticket in tickets)
+            {
+                string jsonFormatTicket = JsonSerializer.Serialize(ticket);
+                Console.WriteLine(jsonFormatTicket);
+            }
+            foreach (var premiumTicket in premiumTickets)
+            {
+                string jsonFormatPremiumTicket = JsonSerializer.Serialize(premiumTicket);
+                Console.WriteLine(jsonFormatPremiumTicket);
+            }
         }
 
         private decimal normalPrice()
