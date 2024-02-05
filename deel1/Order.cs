@@ -8,8 +8,8 @@ namespace deel1
         private int orderNr;
         private bool isStudentOrder;
         private decimal price;
-        private List<MovieTicket> tickets;
-        private List<MovieTicket> premiumTickets;
+        private List<MovieTicket> tickets = new List<MovieTicket>();
+        private List<MovieTicket> premiumTickets = new List<MovieTicket>();
         private bool isWeekend = false;
         public Order(int orderNr, bool isStudentOrder)
         {
@@ -39,7 +39,6 @@ namespace deel1
         public decimal calculatePrice()
         {
             var freeTickets = calculateFreeTickets();
-            Console.WriteLine("Free tickets: ", freeTickets);
             if (freeTickets > 0)
             {
                 return calculatePriceWithFreeTickets(freeTickets);
@@ -106,7 +105,7 @@ namespace deel1
             }
             foreach (var premiumTicket in premiumTickets)
             {
-                price -= premiumTicket.getPrice();
+                price += addPremiumPrice(premiumTicket);
             }
             return price;
         }
@@ -167,8 +166,7 @@ namespace deel1
                 }
                 else
                 {
-                    ticketPrice += premiumTicket.getPrice();
-                    ticketPrice += getPremiumprice();
+                    ticketPrice += addPremiumPrice(premiumTicket);
                 }
                 price += ticketPrice;
             }
@@ -182,6 +180,11 @@ namespace deel1
                 return 2;
             }
             return 3;
+        }
+
+        private decimal addPremiumPrice(MovieTicket ticket)
+        {
+            return ticket.getPrice() + getPremiumprice();
         }
     }
 }
