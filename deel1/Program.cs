@@ -8,8 +8,11 @@ DateTime dateAndTime= DateTime.Now;
 
 Movie movie = new Movie("Godzilla vs Kong");
 MovieScreening movieScreening = new MovieScreening(movie, dateAndTime, 12);
-MovieTicket movieTicket = new MovieTicket(true, 4, 12, movieScreening);
+MovieTicket firstTicket = new MovieTicket(true, 4, 12, movieScreening);
+MovieTicket secondTicket = new MovieTicket(true, 4, 13, movieScreening);
 
-Console.WriteLine(movie.toString());
-Console.WriteLine(movieScreening.toString());
-Console.WriteLine(movieTicket.toString());
+Order studentOrder = new Order(1, true);
+
+studentOrder.addSeatReservation(firstTicket);
+//studentOrder.addSeatReservation(secondTicket);
+Console.WriteLine(studentOrder.calculatePrice());
