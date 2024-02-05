@@ -17,7 +17,7 @@ namespace deel1
         }
         public int getOrderNr()
         {
-            return 1;
+            return orderNr;
         }
         public void addSeatReservation(MovieTicket ticket)
         {
