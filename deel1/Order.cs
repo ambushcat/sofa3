@@ -112,7 +112,7 @@ namespace deel1
 
         private decimal calculatePriceWithDiscount()
         {
-            if ((tickets.Count + premiumTickets.Count) > 6)
+            if ((tickets.Count + premiumTickets.Count) >= 6)
             {
                 return normalPrice() * (decimal)0.9;
             }
