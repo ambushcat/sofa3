@@ -10,8 +10,8 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
-
+  test:
+    name: Run tests
     runs-on: ubuntu-latest
 
     steps:
@@ -23,11 +23,8 @@ jobs:
         project: 'sofa3.csproj'
     - name: Restore dependencies
       run: dotnet restore
-      
-    - name: Build
-      run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --verbosity normal
 
   sonar:
     name: Build and analyze
