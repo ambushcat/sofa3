@@ -1,6 +1,6 @@
 ﻿namespace deel1
 {
-    class MovieScreening
+    public class MovieScreening
     {
         public DateTime dateAndTime;
         private decimal pricePerSeat;

@@ -1,15 +1,15 @@
 ﻿namespace deel1
 {
-    class MovieTicket
+    public class MovieTicket
     {
         private int rowNr;
         private int seatNr;
-        public bool isPremium;
+        private bool premiumTicket;
         private MovieScreening movieScreening;
         
-        public MovieTicket(bool isPremiumReservation, int seatRow, int seatNr, MovieScreening movieScreening)
+        public MovieTicket(bool premiumTicket, int seatRow, int seatNr, MovieScreening movieScreening)
         {
-            this.isPremium = isPremiumReservation;
+            this.premiumTicket = premiumTicket;
             this.seatNr = seatNr;
             this.rowNr = seatRow;
             this.movieScreening = movieScreening;
@@ -19,6 +19,11 @@
         public decimal getPrice()
         {
             return movieScreening.getPricePerSeat();
+        }
+
+        public bool isPremium()
+        {
+            return premiumTicket;
         }
 
         public string toString()

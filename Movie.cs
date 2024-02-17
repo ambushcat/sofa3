@@ -1,6 +1,6 @@
 ﻿namespace deel1
 {
-    class Movie
+    public class Movie
     {
         private string title;
         private List<MovieScreening> screening;

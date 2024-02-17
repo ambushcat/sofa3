@@ -1,6 +1,6 @@
 ﻿namespace deel1
 {
-    enum TicketExportFormat
+    public enum TicketExportFormat
     {
         PLAINTEXT,
         JSON
