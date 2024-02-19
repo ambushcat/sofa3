@@ -1,4 +1,6 @@
 ﻿using FluentAssertions;
+using sofa3.Export;
+using sofa3.PriceCalculation;
 using Xunit;
 
 namespace deel1.Tests
@@ -13,7 +15,9 @@ namespace deel1.Tests
             Movie movie = new Movie("Godzilla vs Kong");
             MovieScreening movieScreening = new MovieScreening(movie, dateAndTime, 12);
             MovieTicket firstTicket = new MovieTicket(false, 4, 12, movieScreening);
-            Order studentOrder = new Order(1, true);
+            ExportFactory exportFactory = new ExportFactory();
+            PriceCalculationFactory priceCalculationFactory = new PriceCalculationFactory();
+            Order studentOrder = new Order(1, true, exportFactory, priceCalculationFactory);
 
             //Act
             studentOrder.addSeatReservation(firstTicket);
@@ -31,11 +35,13 @@ namespace deel1.Tests
             Movie movie = new Movie("Godzilla vs Kong");
             MovieScreening movieScreening = new MovieScreening(movie, dateAndTime, 12);
             MovieTicket firstTicket = new MovieTicket(true, 4, 12, movieScreening);
-            Order order = new Order(1, false);
+            ExportFactory exportFactory = new ExportFactory();
+            PriceCalculationFactory priceCalculationFactory = new PriceCalculationFactory();
+            Order studentOrder = new Order(1, false, exportFactory, priceCalculationFactory);
 
             //Act
-            order.addSeatReservation(firstTicket);
-            var result = order.calculatePrice();
+            studentOrder.addSeatReservation(firstTicket);
+            var result = studentOrder.calculatePrice();
 
             //Assert
             Assert.Equal(15, result);
@@ -49,7 +55,9 @@ namespace deel1.Tests
             Movie movie = new Movie("Godzilla vs Kong");
             MovieScreening movieScreening = new MovieScreening(movie, dateAndTime, 12);
             MovieTicket firstTicket = new MovieTicket(true, 4, 12, movieScreening);
-            Order studentOrder = new Order(1, true);
+            ExportFactory exportFactory = new ExportFactory();
+            PriceCalculationFactory priceCalculationFactory = new PriceCalculationFactory();
+            Order studentOrder = new Order(1, true, exportFactory, priceCalculationFactory);
 
             //Act
             studentOrder.addSeatReservation(firstTicket);
@@ -68,7 +76,9 @@ namespace deel1.Tests
             MovieScreening movieScreening = new MovieScreening(movie, dateAndTime, 12);
             MovieTicket firstTicket = new MovieTicket(true, 4, 12, movieScreening);
             MovieTicket secondTicket = new MovieTicket(true, 4, 13, movieScreening);
-            Order studentOrder = new Order(1, true);
+            ExportFactory exportFactory = new ExportFactory();
+            PriceCalculationFactory priceCalculationFactory = new PriceCalculationFactory();
+            Order studentOrder = new Order(1, true, exportFactory, priceCalculationFactory);
 
             //Act
             studentOrder.addSeatReservation(firstTicket);
@@ -92,16 +102,18 @@ namespace deel1.Tests
             MovieTicket ticket4 = new MovieTicket(false, 4, 15, movieScreening);
             MovieTicket ticket5 = new MovieTicket(false, 4, 16, movieScreening);
             MovieTicket ticket6 = new MovieTicket(false, 4, 17, movieScreening);
-            Order order = new Order(1, false);
+            ExportFactory exportFactory = new ExportFactory();
+            PriceCalculationFactory priceCalculationFactory = new PriceCalculationFactory();
+            Order studentOrder = new Order(1, false, exportFactory, priceCalculationFactory);
 
             //Act
-            order.addSeatReservation(ticket1);
-            order.addSeatReservation(ticket2);
-            order.addSeatReservation(ticket3);
-            order.addSeatReservation(ticket4);
-            order.addSeatReservation(ticket5);
-            order.addSeatReservation(ticket6);
-            var result = order.calculatePrice();
+            studentOrder.addSeatReservation(ticket1);
+            studentOrder.addSeatReservation(ticket2);
+            studentOrder.addSeatReservation(ticket3);
+            studentOrder.addSeatReservation(ticket4);
+            studentOrder.addSeatReservation(ticket5);
+            studentOrder.addSeatReservation(ticket6);
+            var result = studentOrder.calculatePrice();
 
             //Assert
             result.Should().Be((decimal)64.8);
@@ -120,16 +132,18 @@ namespace deel1.Tests
             MovieTicket ticket4 = new MovieTicket(true, 4, 15, movieScreening);
             MovieTicket ticket5 = new MovieTicket(true, 4, 16, movieScreening);
             MovieTicket ticket6 = new MovieTicket(true, 4, 17, movieScreening);
-            Order order = new Order(1, false);
+            ExportFactory exportFactory = new ExportFactory();
+            PriceCalculationFactory priceCalculationFactory = new PriceCalculationFactory();
+            Order studentOrder = new Order(1, false, exportFactory, priceCalculationFactory);
 
             //Act
-            order.addSeatReservation(ticket1);
-            order.addSeatReservation(ticket2);
-            order.addSeatReservation(ticket3);
-            order.addSeatReservation(ticket4);
-            order.addSeatReservation(ticket5);
-            order.addSeatReservation(ticket6);
-            var result = order.calculatePrice();
+            studentOrder.addSeatReservation(ticket1);
+            studentOrder.addSeatReservation(ticket2);
+            studentOrder.addSeatReservation(ticket3);
+            studentOrder.addSeatReservation(ticket4);
+            studentOrder.addSeatReservation(ticket5);
+            studentOrder.addSeatReservation(ticket6);
+            var result = studentOrder.calculatePrice();
 
             //Assert
             result.Should().Be(81);
@@ -148,16 +162,18 @@ namespace deel1.Tests
             MovieTicket ticket4 = new MovieTicket(false, 4, 15, movieScreening);
             MovieTicket ticket5 = new MovieTicket(false, 4, 16, movieScreening);
             MovieTicket ticket6 = new MovieTicket(false, 4, 17, movieScreening);
-            Order order = new Order(1, false);
+            ExportFactory exportFactory = new ExportFactory();
+            PriceCalculationFactory priceCalculationFactory = new PriceCalculationFactory();
+            Order studentOrder = new Order(1, false, exportFactory, priceCalculationFactory);
 
             //Act
-            order.addSeatReservation(ticket1);
-            order.addSeatReservation(ticket2);
-            order.addSeatReservation(ticket3);
-            order.addSeatReservation(ticket4);
-            order.addSeatReservation(ticket5);
-            order.addSeatReservation(ticket6);
-            var result = order.calculatePrice();
+            studentOrder.addSeatReservation(ticket1);
+            studentOrder.addSeatReservation(ticket2);
+            studentOrder.addSeatReservation(ticket3);
+            studentOrder.addSeatReservation(ticket4);
+            studentOrder.addSeatReservation(ticket5);
+            studentOrder.addSeatReservation(ticket6);
+            var result = studentOrder.calculatePrice();
 
             //Assert
             result.Should().Be((decimal)72.9);
