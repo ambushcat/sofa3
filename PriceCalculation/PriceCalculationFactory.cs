@@ -1,4 +1,5 @@
 ﻿using deel1;
+using sofa3.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,9 @@ namespace sofa3.PriceCalculation
         {
             if (order.isStudentOrder())
             {
-                return new StudentPriceCalculation();
+                return new StudentPriceCalculation(new StudentTicketUtilities());
             }
-            return new RegularPriceCalculation();
+            return new RegularPriceCalculation(new RegularTicketUtilities());
         }
     }
 }

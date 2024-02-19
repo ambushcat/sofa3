@@ -1,20 +1,21 @@
 ﻿using deel1;
-using sofa3.FreeTickets;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using sofa3.Utils;
 
 namespace sofa3.PriceCalculation
 {
     public class RegularPriceCalculation : PriceCalculation
     {
+        private RegularTicketUtilities regularTicketUtilities;
+        public RegularPriceCalculation(RegularTicketUtilities regularTicketUtilities)
+        {
+            this.regularTicketUtilities = regularTicketUtilities;
+        }
+
         public decimal CalculatePrice(List<MovieTicket> tickets)
         {
-            var isWeekend = TicketUtilities.CheckIsWeekend(tickets);
-            var freeTickets = TicketUtilities.CalculateFreeTickets(false, isWeekend, tickets);
-            var hasDiscount = TicketUtilities.CheckForDiscount(false, isWeekend);
+            var isWeekend = regularTicketUtilities.CheckIsWeekend(tickets);
+            var freeTickets = regularTicketUtilities.CalculateFreeTickets(tickets, isWeekend);
+            var hasDiscount = regularTicketUtilities.CheckForDiscount(isWeekend);
 
             if (freeTickets > 0)
             {
@@ -45,12 +46,12 @@ namespace sofa3.PriceCalculation
 
         private decimal calculatePriceWithFreeTickets(int freeTickets, List<MovieTicket> tickets)
         {
-            var premiumTickets = tickets.GroupBy(x => x.isPremium());
-            var regularTickets = tickets.GroupBy(x => !x.isPremium());
+            var premiumTickets = tickets.Where(x => x.isPremium());
+            var regularTickets = tickets.Where(x => !x.isPremium());
 
             decimal price = 0;
 
-            foreach (MovieTicket ticket in regularTickets)
+            foreach (MovieTicket regularTicket in regularTickets)
             {
                 decimal ticketPrice = 0;
                 if (freeTickets > 0)
@@ -59,7 +60,7 @@ namespace sofa3.PriceCalculation
                 }
                 else
                 {
-                    ticketPrice += ticket.getPrice();
+                    ticketPrice += regularTicket.getPrice();
                 }
                 price += ticketPrice;
             }
@@ -73,7 +74,7 @@ namespace sofa3.PriceCalculation
                 }
                 else
                 {
-                    ticketPrice += TicketUtilities.GetPremiumPrice(false, premiumTicket);
+                    ticketPrice += regularTicketUtilities.GetPremiumPrice(premiumTicket);
                 }
                 price += ticketPrice;
             }
@@ -82,18 +83,18 @@ namespace sofa3.PriceCalculation
 
         private decimal normalPrice(List<MovieTicket> tickets)
         {
-            var premiumTickets = tickets.GroupBy(x => x.isPremium());
-            var regularTickets = tickets.GroupBy(x => !x.isPremium());
+            var premiumTickets = tickets.Where(x => x.isPremium());
+            var regularTickets = tickets.Where(x => !x.isPremium());
 
             decimal price = 0;
 
-            foreach (MovieTicket ticket in tickets)
+            foreach (MovieTicket regularTicket in regularTickets)
             {
-                price += ticket.getPrice();
+                price += regularTicket.getPrice();
             }
             foreach (MovieTicket premiumTicket in premiumTickets)
             {
-                price += TicketUtilities.GetPremiumPrice(false, premiumTicket);
+                price += regularTicketUtilities.GetPremiumPrice(premiumTicket);
             }
             return price;
         }
