@@ -17,15 +17,5 @@ namespace sofa3.Utils
         {
             return tickets.First().isWeekend();
         }
-
-        public List<MovieTicket> GetRegularTickets()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<MovieTicket> GetPremiumTickets()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -10,5 +10,6 @@ namespace sofa3.PriceCalculation
     public interface PriceCalculation
     {
         public decimal CalculatePrice(List<MovieTicket> tickets);
+        public decimal normalPrice(List<MovieTicket> tickets);
     }
 }
