@@ -63,7 +63,7 @@ namespace sofa3.PriceCalculation
             return price;
         }
 
-        private decimal normalPrice(List<MovieTicket> tickets)
+        public decimal normalPrice(List<MovieTicket> tickets)
         {
             var premiumTickets = tickets.Where(x => x.isPremium());
             var regularTickets = tickets.Where(x => !x.isPremium());
