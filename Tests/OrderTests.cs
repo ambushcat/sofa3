@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using sofa3;
 using sofa3.Export;
 using sofa3.PriceCalculation;
 using Xunit;

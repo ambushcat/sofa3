@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using deel1;
+using sofa3;
 using sofa3.Export;
 using sofa3.PriceCalculation;
 using System;
@@ -14,9 +15,10 @@ MovieTicket firstTicket = new MovieTicket(true, 4, 12, movieScreening);
 MovieTicket secondTicket = new MovieTicket(true, 4, 13, movieScreening);
 ExportFactory exportFactory = new ExportFactory();
 PriceCalculationFactory priceCalculationFactory = new PriceCalculationFactory();
-Order studentOrder = new Order(1, true, exportFactory, priceCalculationFactory);
+Order studentOrder = new Order(1, false, exportFactory, priceCalculationFactory);
 
 studentOrder.addSeatReservation(firstTicket);
 //studentOrder.addSeatReservation(secondTicket);
+studentOrder.Submit();
 Console.WriteLine(studentOrder.calculatePrice());
-studentOrder.export(TicketExportFormat.JSON);
+//studentOrder.export(TicketExportFormat.JSON);

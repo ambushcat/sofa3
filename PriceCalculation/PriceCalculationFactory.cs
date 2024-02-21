@@ -1,10 +1,4 @@
-﻿using deel1;
-using sofa3.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using sofa3.Utils;
 
 namespace sofa3.PriceCalculation
 {
