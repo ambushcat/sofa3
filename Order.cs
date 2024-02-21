@@ -34,7 +34,7 @@ namespace deel1
         {         
                 tickets.Add(ticket);
         }
-
+        
         public decimal calculatePrice()
         {
             var pc = priceCalculationFactory.createPriceCalculation(this);
