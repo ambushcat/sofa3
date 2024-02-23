@@ -39,5 +39,10 @@
             }
             return false;
         }
+
+        public DateTime GetScreeningTime()
+        {
+            return movieScreening.dateAndTime;
+        }
     }
 }
