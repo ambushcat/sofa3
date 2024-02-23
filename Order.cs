@@ -11,7 +11,6 @@ namespace sofa3
     {
         IOrderState buyState;
         IOrderState doneState;
-        IOrderState payState;
         IOrderState reservateState;
         IOrderState cancelState;
 
@@ -22,7 +21,6 @@ namespace sofa3
         private List<MovieTicket> tickets = new List<MovieTicket>();
         private ExportFactory exportFactory;
         private PriceCalculationFactory priceCalculationFactory;
-
         public Order(int orderNr, bool studentOrder, ExportFactory exportFactory, PriceCalculationFactory priceCalculationFactory)
         {
             this.orderNr = orderNr;
@@ -32,7 +30,6 @@ namespace sofa3
             this.buyState = new BuyState(this);
             this.reservateState = new ReservateState(this);
             this.doneState = new DoneState(this);
-            this.payState = new PayState(this);
             this.cancelState = new CancelSate(this);
             state = buyState;
         }
@@ -79,10 +76,6 @@ namespace sofa3
         {
             state.Cancel();
         }
-        public void CheckPayed()
-        {
-            state.CheckPayed();
-        }
         public IOrderState GetBuyState()
         {
             return buyState;
@@ -91,13 +84,10 @@ namespace sofa3
         {
             return reservateState;
         }
+
         public IOrderState GetCancelState()
         {
             return cancelState;
-        }
-        public IOrderState GetPayState()
-        {
-            return payState;
         }
         public IOrderState GetDoneState()
         {
@@ -106,6 +96,15 @@ namespace sofa3
         public void SetState(IOrderState state)
         {
             this.state = state;
+        }
+        public void CheckPaid()
+        {
+            state.CheckPaid();  
+        }
+
+        public DateTime GetScreeningTime()
+        {
+            return tickets.First().GetScreeningTime();
         }
     }
 }

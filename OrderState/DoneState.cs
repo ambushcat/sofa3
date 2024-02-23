@@ -13,27 +13,27 @@ namespace sofa3.OrderState
 
         public void Cancel()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Already completed");
         }
 
-        public void CheckPayed()
+        public void CheckPaid()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("This order has been paid for");
         }
 
         public void EditOrder()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Already completed");
         }
 
         public void Pay()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Already completed");
         }
 
         public void Submit()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Already completed");
         }
     }
 }

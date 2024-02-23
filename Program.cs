@@ -21,4 +21,7 @@ studentOrder.addSeatReservation(firstTicket);
 //studentOrder.addSeatReservation(secondTicket);
 studentOrder.Submit();
 Console.WriteLine(studentOrder.calculatePrice());
+studentOrder.Submit();
+studentOrder.Pay();
+studentOrder.Cancel();
 //studentOrder.export(TicketExportFormat.JSON);

@@ -12,12 +12,20 @@ namespace sofa3.OrderState
 
         public void Cancel()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("There goes your order. Can't say I didn't warn ya");
         }
 
-        public void CheckPayed()
+        public void CheckPaid()
         {
-            throw new NotImplementedException();
+            if (DateTime.Now.AddHours(-12) < order.GetScreeningTime())
+            {
+                order.SetState(order.GetCancelState());
+                order.Cancel();
+            }
+            else
+            {
+                Console.WriteLine("Pay up bitch");
+            }
         }
 
         public void EditOrder()
@@ -27,12 +35,12 @@ namespace sofa3.OrderState
 
         public void Pay()
         {
-            throw new NotImplementedException();
+           order.SetState(order.GetDoneState());  
         }
 
         public void Submit()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Already submitted");
         }
     }
 }

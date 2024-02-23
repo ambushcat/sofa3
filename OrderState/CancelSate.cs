@@ -15,29 +15,34 @@ namespace sofa3.OrderState
             this.order = order;
         }
 
-        public void Cancel()
+        public void Bought()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Order canceled");
         }
 
-        public void CheckPayed()
+        public void Cancel()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Canceling order...");
+        }
+
+        public void CheckPaid()
+        {
+            Console.WriteLine("Order canceled");
         }
 
         public void EditOrder()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Order canceled");
         }
 
         public void Pay()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Order canceled");
         }
 
         public void Submit()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Order canceled");
         }
     }
 }

@@ -9,6 +9,6 @@ namespace sofa3.OrderState
         void EditOrder();
         void Pay();
         void Cancel();
-        void CheckPayed();
+        void CheckPaid();
     }
 }

@@ -12,27 +12,28 @@ namespace sofa3.OrderState
 
         public void Cancel()
         {
-            throw new NotImplementedException();
+            order.SetState(order.GetCancelState());
+            order.Cancel();
         }
 
-        public void CheckPayed()
+        public void CheckPaid()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("You must sumbit order first");
         }
 
         public void EditOrder()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Already editing order");
         }
 
         public void Pay()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Submit order");
         }
 
         public void Submit()
         {
-            Console.WriteLine("Submitting to this state 😏");
+            Console.WriteLine("Submitting order");
             order.SetState(order.GetReservateState());
         }
     }
