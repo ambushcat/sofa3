@@ -33,7 +33,7 @@ namespace sofa3.OrderState
 
         public void Submit()
         {
-            Console.WriteLine("Submitting order");
+            order.NotifyObserver("Submitting order");
             order.SetState(order.GetReservateState());
         }
     }

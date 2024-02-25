@@ -12,7 +12,7 @@ namespace sofa3.OrderState
 
         public void Cancel()
         {
-            Console.WriteLine("There goes your order. Can't say I didn't warn ya");
+            order.NotifyObserver("There goes your order. Can't say I didn't warn ya");
         }
 
         public void CheckPaid()
@@ -24,7 +24,7 @@ namespace sofa3.OrderState
             }
             else
             {
-                Console.WriteLine("Pay up bitch");
+                order.NotifyObserver("Pay up bitch!");
             }
         }
 
@@ -35,7 +35,8 @@ namespace sofa3.OrderState
 
         public void Pay()
         {
-           order.SetState(order.GetDoneState());  
+           order.SetState(order.GetDoneState());
+           order.NotifyObserver("You have paid");
         }
 
         public void Submit()
