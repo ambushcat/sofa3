@@ -22,7 +22,7 @@ namespace sofa3.OrderState
 
         public void Cancel()
         {
-            Console.WriteLine("Canceling order...");
+            order.NotifyObserver("Canceling order...");
         }
 
         public void CheckPaid()

@@ -1,4 +1,5 @@
 ﻿using deel1;
+using sofa3.CustomerNotification;
 using sofa3.Export;
 using sofa3.OrderState;
 using sofa3.PriceCalculation;
@@ -7,15 +8,15 @@ using System.Text.Json;
 
 namespace sofa3
 {
-    public class Order
+    public class Order : ISubject
     {
         IOrderState buyState;
         IOrderState doneState;
         IOrderState reservateState;
         IOrderState cancelState;
-
         IOrderState state;
 
+        private List<Customer> customersToNotify = [];
         private int orderNr;
         private bool studentOrder;
         private List<MovieTicket> tickets = new List<MovieTicket>();
@@ -99,12 +100,30 @@ namespace sofa3
         }
         public void CheckPaid()
         {
-            state.CheckPaid();  
+            state.CheckPaid();
         }
 
         public DateTime GetScreeningTime()
         {
             return tickets.First().GetScreeningTime();
+        }
+
+        public void RegisterObserver(Customer customer)
+        {
+            customersToNotify.Add(customer);
+        }
+
+        public void RemoveObserver(Customer customer)
+        {
+            customersToNotify.Remove(customer);
+        }
+
+        public void NotifyObserver(string message)
+        {
+            foreach (Customer customer in customersToNotify)
+            {
+                customer.GetNotificationService().Update(message);
+            }
         }
     }
 }
