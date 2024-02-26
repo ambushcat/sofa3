@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using deel1;
+using sofa3.PopcornMachine;
 using sofa3.Theater;
 
 DateTime dateAndTime= DateTime.Now;
@@ -28,3 +29,11 @@ imaxMovieScreening.Add(imaxTicket);
 imaxMovieScreening.Add(imaxTicket2);
 
 Console.WriteLine(theater.Operation());
+
+PopcornRecipe popcornCaramel = new CaramelPopcorn(); 
+PopcornRecipe popcornSalted = new SaltedPopcorn();
+PopcornRecipe popcornSweet = new SweetPopcorn();
+
+popcornCaramel.PreparePopcorn();
+/*popcornSalted.PreparePopcorn();
+popcornSweet.PreparePopcorn();*/
