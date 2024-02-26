@@ -1,6 +1,8 @@
-﻿namespace deel1
+﻿using sofa3.Theater;
+
+namespace deel1
 {
-    public class MovieTicket
+    public class MovieTicket : Component
     {
         private int rowNr;
         private int seatNr;
@@ -43,6 +45,16 @@
         public DateTime GetScreeningTime()
         {
             return movieScreening.dateAndTime;
+        }
+
+        public override string Operation()
+        {
+            return "Ticket";
+        }
+
+        public override bool IsComposite()
+        {
+            return false;
         }
     }
 }

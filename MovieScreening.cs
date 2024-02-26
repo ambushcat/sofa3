@@ -1,7 +1,11 @@
-﻿namespace deel1
+﻿using sofa3.Theater;
+
+namespace deel1
 {
-    public class MovieScreening
+    public class MovieScreening : Component
     {
+        private List<Component> children = new List<Component>();
+
         public DateTime dateAndTime;
         private decimal pricePerSeat;
 
@@ -18,5 +22,33 @@
         {
             return "Movie Screening ~ Date an time; " + dateAndTime + ", Price per seat; " + pricePerSeat;
         }
+
+        public override string Operation()
+        {
+            int i = 0;
+            string result = "Screening(";
+
+            foreach (Component component in this.children)
+            {
+                result += component.Operation();
+                if (i != children.Count - 1)
+                {
+                    result += "+";
+                }
+                i++;
+            }
+
+            return result + ")";
+        }
+        public override void Add(Component component)
+        {
+            this.children.Add(component);
+        }
+
+        public override void Remove(Component component)
+        {
+            this.children.Remove(component);
+        }
+
     }
 }
